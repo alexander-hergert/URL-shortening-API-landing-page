@@ -4,10 +4,10 @@ import SectionBottom from "./statistics/StatisticsBottom";
 
 const StatisticsSection = () => {
   return (
-    <>
+    <section>
       <SectionTop />
       <SectionBottom />
-    </>
+    </section>
   );
 };
 
