@@ -1,15 +1,53 @@
 import React from "react";
+import { styled } from "styled-components";
 
-const Footer = () => {
+/************** STYLES ********************/
+
+const Footer = styled.footer`
+  padding: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  background-color: hsl(260, 8%, 14%);
+`;
+
+const Div = styled.div`
+  display: flex;
+  justify-content: space-around;
+  gap: 5rem;
+`;
+
+const Ul = styled.ul`
+  display: flex;
+  gap: 2rem;
+`;
+
+const Img = styled.img`
+  width: 8rem;
+  filter: invert(100%);
+`;
+
+const Li = styled.li`
+  margin-bottom: 1rem;
+
+  & > a {
+    color: white;
+  }
+`;
+
+/************** COMPONENT ********************/
+
+const FooterSection = () => {
   return (
-    <footer>
-      <img src="/assets/images/logo.svg" alt="logo" />
-      <div>
+    <Footer>
+      <Img src="/assets/images/logo.svg" alt="logo" />
+      <Div>
         <div>
           <ul>
-            <li>
+            <Li>
               <a href="">Features</a>
-            </li>
+            </Li>
             <li>
               <a href="">Link Shortening</a>
             </li>
@@ -23,9 +61,9 @@ const Footer = () => {
         </div>
         <div>
           <ul>
-            <li>
+            <Li>
               <a href="">Resources</a>
-            </li>
+            </Li>
             <li>
               <a href="">Blog</a>
             </li>
@@ -39,9 +77,9 @@ const Footer = () => {
         </div>
         <div>
           <ul>
-            <li>
+            <Li>
               <a href="">Company</a>
-            </li>
+            </Li>
             <li>
               <a href="">Our Team</a>
             </li>
@@ -54,7 +92,7 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <ul>
+          <Ul>
             <li>
               <a href="">
                 <img
@@ -84,11 +122,11 @@ const Footer = () => {
                 />
               </a>
             </li>
-          </ul>
+          </Ul>
         </div>
-      </div>
-    </footer>
+      </Div>
+    </Footer>
   );
 };
 
-export default Footer;
+export default FooterSection;

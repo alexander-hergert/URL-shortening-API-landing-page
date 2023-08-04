@@ -1,58 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
+import { RxHamburgerMenu } from "react-icons/rx";
+import MenuBurger from "./navbar/MenuBurger";
+import LinkButton from "./buttons/LinkButton";
 
 /************** STYLES ********************/
 
+const Nav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 10rem;
+`;
+
+const Div = styled.div`
+  display: flex;
+`;
+
+const Menu = styled.menu`
+  display: flex;
+  margin-left: 1rem;
+
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
+`;
+
+const Li = styled.li`
+  margin: 0 1rem;
+`;
+
+const BurgerButton = styled.a`
+  @media only screen and (min-width: 800px) {
+    display: none;
+  }
+`;
+
+/************** COMPONENT ********************/
+
 const NavbarSection = () => {
+  const [isToggleMenu, setIsToggleMenu] = useState(false);
+
   return (
-    <nav>
-      <div>
+    <Nav>
+      <Div>
         <img src="/assets/images/logo.svg" alt="logo" />
-        <ul>
-          <li>
+        <Menu>
+          <Li>
             <a href="">Features</a>
-          </li>
-          <li>
+          </Li>
+          <Li>
             <a href="">Pricing</a>
-          </li>
-          <li>
+          </Li>
+          <Li>
             <a href="">Resources</a>
-          </li>
-        </ul>
-      </div>
-      <ul>
-        <li>
+          </Li>
+        </Menu>
+      </Div>
+      <Menu>
+        <Li>
           <a href="">Login</a>
-        </li>
-        <li>
-          <a href="">Sign Up</a>
-        </li>
-      </ul>
-      <button>
-        <img src="" alt="burger-icon" />
-      </button>
-      <div>
-        <ul>
-          <li>
-            <a href="">Features</a>
-          </li>
-          <li>
-            <a href="">Pricing</a>
-          </li>
-          <li>
-            <a href="">Resources</a>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <a href="">Login</a>
-          </li>
-          <li>
-            <a href="">Sign Up</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+        </Li>
+        <Li>
+          <LinkButton value={"Sign Up"} />
+        </Li>
+      </Menu>
+      <BurgerButton href="">
+        <RxHamburgerMenu />
+      </BurgerButton>
+      {/* opened state */}
+      {isToggleMenu && <MenuBurger />}
+    </Nav>
   );
 };
 
