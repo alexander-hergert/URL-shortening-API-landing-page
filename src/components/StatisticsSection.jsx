@@ -5,7 +5,7 @@ import { styled } from "styled-components";
 
 /************** STYLES ********************/
 const StylesContainer = styled.section`
-  background-color: hsl(0, 0%, 75%);
+  background-color: hsl(227deg 31% 95%);
   text-align: center;
   padding: 5rem;
   padding-top: 8rem;
