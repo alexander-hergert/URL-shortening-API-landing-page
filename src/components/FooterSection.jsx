@@ -3,29 +3,45 @@ import { styled } from "styled-components";
 
 /************** STYLES ********************/
 
-const Footer = styled.footer`
+const StylesContainer = styled.footer`
   padding: 3rem;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
   background-color: hsl(260, 8%, 14%);
-`;
+  @media only screen and (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
 
-const Div = styled.div`
-  display: flex;
-  justify-content: space-around;
-  gap: 5rem;
+  & > img {
+    width: 8rem;
+    filter: invert(100%);
+  }
+
+  & > div {
+    display: flex;
+    justify-content: space-around;
+    gap: 5rem;
+    @media only screen and (max-width: 1100px) {
+      gap: 2rem;
+    }
+    @media only screen and (max-width: 800px) {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
 `;
 
 const Ul = styled.ul`
   display: flex;
   gap: 2rem;
-`;
-
-const Img = styled.img`
-  width: 8rem;
-  filter: invert(100%);
+  img {
+    min-width: 1rem;
+  }
 `;
 
 const Li = styled.li`
@@ -40,9 +56,9 @@ const Li = styled.li`
 
 const FooterSection = () => {
   return (
-    <Footer>
-      <Img src="/assets/images/logo.svg" alt="logo" />
-      <Div>
+    <StylesContainer>
+      <img src="/assets/images/logo.svg" alt="logo" />
+      <div>
         <div>
           <ul>
             <Li>
@@ -124,8 +140,8 @@ const FooterSection = () => {
             </li>
           </Ul>
         </div>
-      </Div>
-    </Footer>
+      </div>
+    </StylesContainer>
   );
 };
 

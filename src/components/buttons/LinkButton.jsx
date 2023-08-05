@@ -9,8 +9,8 @@ const Button = styled.a`
 `;
 
 /************** COMPONENT ********************/
-const LinkButton = ({ value }) => {
-  return <Button href="">{value}</Button>;
+const LinkButton = ({ children }) => {
+  return <Button href="">{children}</Button>;
 };
 
 export default LinkButton;

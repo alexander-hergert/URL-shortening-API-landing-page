@@ -3,59 +3,72 @@ import { styled } from "styled-components";
 
 /************** STYLES ********************/
 
-const Section = styled.section`
-  width: 85%;
-  top: 4rem;
-  left: 50%;
-  transform: translate(-50%);
-  position: relative;
-  padding: 2rem;
-  border-radius: 5px;
-  background-image: url("/assets/images/bg-shorten-desktop.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: hsl(257, 27%, 26%);
+const StylesContainer = styled.section`
+  width: 100%;
+  padding: 0 5rem;
+  margin: 2rem 0;
 
-  @media only screen and (max-width: 800px) {
-    background-image: url("/assets/images/bg-shorten-mobile.svg");
+  div {
+    padding: 2rem;
+    border-radius: 5px;
+    position: relative;
+    top: 6rem;
+    left: 50%;
+    transform: translate(-50%);
+    background-image: url("/assets/images/bg-shorten-desktop.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: hsl(257, 27%, 26%);
+    @media only screen and (max-width: 800px) {
+      background-image: url("/assets/images/bg-shorten-mobile.svg");
+      top: 8rem;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      @media only screen and (max-width: 800px) {
+        flex-direction: column;
+      }
+
+      input {
+        width: 60%;
+        padding: 1rem;
+        border-radius: 10px;
+        border: none;
+        @media only screen and (max-width: 800px) {
+          width: 100%;
+        }
+      }
+
+      button {
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        background-color: hsl(180, 66%, 49%);
+        color: white;
+        border: none;
+      }
+    }
   }
-`;
-
-const Form = styled.form`
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-`;
-
-const Input = styled.input`
-  width: 60%;
-  padding: 1rem;
-  border-radius: 10px;
-  border: none;
-`;
-
-const Button = styled.button`
-  padding: 1rem 1.5rem;
-  border-radius: 10px;
-  background-color: hsl(180, 66%, 49%);
-  color: white;
-  border: none;
 `;
 
 /************** COMPONENT ********************/
 
 const InputSection = () => {
   return (
-    <Section>
-      <Form action="">
-        <Input
-          type="text"
-          aria-label="url-input"
-          placeholder="Shorten a link here..."
-        />
-        <Button>Shorten It!</Button>
-      </Form>
-    </Section>
+    <StylesContainer>
+      <div>
+        <form action="">
+          <input
+            type="text"
+            aria-label="url-input"
+            placeholder="Shorten a link here..."
+          />
+          <button>Shorten It!</button>
+        </form>
+      </div>
+    </StylesContainer>
   );
 };
 

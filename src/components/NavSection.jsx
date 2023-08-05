@@ -6,31 +6,38 @@ import LinkButton from "./buttons/LinkButton";
 
 /************** STYLES ********************/
 
-const Nav = styled.nav`
+const StylesContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 10rem;
-`;
+  padding: 2rem 6rem;
+  @media only screen and (max-width: 800px) {
+    padding: 2rem 2rem;
+  }
 
-const Div = styled.div`
-  display: flex;
+  div:first-of-type {
+    display: flex;
+  }
 `;
 
 const Menu = styled.menu`
   display: flex;
   margin-left: 1rem;
-
   @media only screen and (max-width: 800px) {
     display: none;
   }
-`;
 
-const Li = styled.li`
-  margin: 0 1rem;
+  li {
+    margin: 0 1rem;
+    @media only screen and (max-width: 1100px) {
+      margin: 0 0.5rem;
+      font-size: 1rem;
+    }
+  }
 `;
 
 const BurgerButton = styled.a`
+  font-size: 2rem;
   @media only screen and (min-width: 800px) {
     display: none;
   }
@@ -38,40 +45,45 @@ const BurgerButton = styled.a`
 
 /************** COMPONENT ********************/
 
-const NavbarSection = () => {
+const NavSection = () => {
   const [isToggleMenu, setIsToggleMenu] = useState(false);
 
+  const handleToggle = (e) => {
+    e.preventDefault();
+    setIsToggleMenu(!isToggleMenu);
+  };
+
   return (
-    <Nav>
-      <Div>
+    <StylesContainer>
+      <div>
         <img src="/assets/images/logo.svg" alt="logo" />
         <Menu>
-          <Li>
+          <li>
             <a href="">Features</a>
-          </Li>
-          <Li>
+          </li>
+          <li>
             <a href="">Pricing</a>
-          </Li>
-          <Li>
+          </li>
+          <li>
             <a href="">Resources</a>
-          </Li>
+          </li>
         </Menu>
-      </Div>
+      </div>
       <Menu>
-        <Li>
+        <li>
           <a href="">Login</a>
-        </Li>
-        <Li>
-          <LinkButton value={"Sign Up"} />
-        </Li>
+        </li>
+        <li>
+          <LinkButton>Sign Up</LinkButton>
+        </li>
       </Menu>
       <BurgerButton href="">
-        <RxHamburgerMenu />
+        <RxHamburgerMenu onClick={handleToggle} />
       </BurgerButton>
       {/* opened state */}
-      {isToggleMenu && <MenuBurger />}
-    </Nav>
+      <MenuBurger isToggleMenu={isToggleMenu} />
+    </StylesContainer>
   );
 };
 
-export default NavbarSection;
+export default NavSection;

@@ -4,51 +4,70 @@ import LinkButton from "./buttons/LinkButton";
 
 /************** STYLES ********************/
 
-const Header = styled.div`
+const StylesContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 10rem;
+  padding-left: 6rem;
+  @media only screen and (max-width: 800px) {
+    flex-direction: column-reverse;
+    padding-left: 2rem;
+  }
+
+  div {
+    width: 50%;
+    @media only screen and (max-width: 800px) {
+      width: 100%;
+      text-align: center;
+      padding-right: 2rem;
+    }
+
+    h1 {
+      font-size: 5rem;
+      @media only screen and (max-width: 1100px) {
+        font-size: 3rem;
+      }
+    }
+
+    p {
+      margin-bottom: 4rem;
+    }
+  }
 `;
 
-const Div = styled.div`
-  width: 50%;
-`;
-
-const Img = styled.img`
-  width: 100%;
-  position: relative;
-  left: 10rem;
-`;
-
-const ImgBox = styled.div`
+const ImgContainer = styled.div`
   overflow: hidden;
-`;
+  @media only screen and (max-width: 800px) {
+    width: 100%;
+  }
 
-const P = styled.p`
-  margin-bottom: 4rem;
+  img {
+    width: 100%;
+    position: relative;
+    left: 8rem;
+  }
 `;
 
 /************** COMPONENT ********************/
 
 const HeaderSection = () => {
   return (
-    <Header>
-      <Div>
+    <StylesContainer>
+      <div>
         <h1>More than just shorter links</h1>
-        <P>
+        <p>
           Build your brand’s recognition and get detailed insights on how your
           links are performing.
-        </P>
-        <LinkButton value={"Get Started"} />
-      </Div>
-      <ImgBox>
-        <Img
+        </p>
+        <LinkButton>Get Started</LinkButton>
+      </div>
+      <ImgContainer>
+        <img
           src="/assets/images/illustration-working.svg"
           alt="illustration-working"
         />
-      </ImgBox>
-    </Header>
+      </ImgContainer>
+    </StylesContainer>
   );
 };
 

@@ -4,7 +4,7 @@ import SectionBottom from "./statistics/StatisticsBottom";
 import { styled } from "styled-components";
 
 /************** STYLES ********************/
-const Section = styled.section`
+const StylesContainer = styled.section`
   background-color: hsl(0, 0%, 75%);
   text-align: center;
   padding: 5rem;
@@ -15,10 +15,10 @@ const Section = styled.section`
 
 const StatisticsSection = () => {
   return (
-    <Section>
+    <StylesContainer>
       <SectionTop />
       <SectionBottom />
-    </Section>
+    </StylesContainer>
   );
 };
 
