@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { styled } from "styled-components";
 import UrlContainer from "./url/UrlContainer";
-import { saveData } from "../utility/functions";
+import { saveData, readData, fetchData } from "../utility/functions";
 import { nanoid } from "nanoid";
-import { readData } from "../utility/functions";
 
 /************** STYLES ********************/
+
+const redColor = "hsl(0, 87%, 67%)";
 
 const StylesContainer = styled.section`
   width: 100%;
@@ -41,7 +42,7 @@ const Div = styled.div`
       width: 60%;
       padding: 1rem;
       border-radius: 10px;
-      border: none;
+      border: 1px solid hsl(0, 0%, 75%);
       @media only screen and (max-width: 800px) {
         width: 100%;
       }
@@ -57,27 +58,43 @@ const Div = styled.div`
   }
 `;
 
+const ErrorMessage = styled.p`
+  color: ${redColor};
+  position: relative;
+  top: 1rem;
+  text-align: center;
+`;
+
+const Input = styled.input`
+  border: 1px solid hsl(0, 0%, 75%);
+`;
+
+const InputError = styled.input`
+  border: 2px solid ${redColor};
+  &::placeholder {
+    color: ${redColor};
+  }
+`;
+
 /************** COMPONENT ********************/
 
 const InputSection = () => {
   const [inputText, setInputText] = useState("");
   const initialData = readData();
   const [localData, setLocalData] = useState(initialData);
+  const [errorMessage, setErrorMessage] = useState("");
   const url = `https://api.shrtco.de/v2/shorten?url=${inputText}`;
-
-  const fetchData = async (url) => {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  const inputRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await fetchData(url);
+    //handle negative response
+    if (!data.ok) {
+      setErrorMessage(data.error);
+      inputRef.current.style.border = `2px solid ${redColor}`;
+      return;
+    }
     const id = nanoid();
     const values = {
       id: id,
@@ -96,6 +113,11 @@ const InputSection = () => {
     setInputText(e.target.value);
   };
 
+  const handleFocus = (e) => {
+    setErrorMessage("");
+    e.target.style.border = `1px solid hsl(0, 0%, 75%)`;
+  };
+
   return (
     <StylesContainer>
       <Div>
@@ -104,9 +126,12 @@ const InputSection = () => {
             type="text"
             aria-label="url-input"
             placeholder="Shorten a link here..."
+            onFocus={handleFocus}
+            ref={inputRef}
           />
           <button>Shorten It!</button>
         </form>
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </Div>
       <UrlContainer localData={localData} setLocalData={setLocalData} />
     </StylesContainer>
