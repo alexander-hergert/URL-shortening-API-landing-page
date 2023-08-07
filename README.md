@@ -24,3 +24,22 @@ Your users should be able to:
 - Copy the shortened link to their clipboard in a single click
 - Receive an error message when the `form` is submitted if:
   - The `input` field is empty
+
+## My process
+
+### Built with
+- React
+- Styled Components
+- Vite
+
+### What I learned
+- Deeper understanding of Styled Components
+- Repeating many Patterns in React
+- New API
+- Custom error messages
+- Practice transitions in React
+- New functions
+
+### Continued development
+
+- Add React DnD to reorganized items in list
