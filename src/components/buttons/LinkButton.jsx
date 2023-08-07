@@ -6,6 +6,12 @@ const Button = styled.a`
   border-radius: 2rem;
   padding: 1rem 2rem;
   color: white;
+
+  &:hover {
+    transition: all 0.25;
+    background-color: hsl(180, 66%, 80%);
+    color: white;
+  }
 `;
 
 /************** COMPONENT ********************/

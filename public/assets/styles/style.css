@@ -35,6 +35,11 @@ ul {
   padding: 0;
 }
 
+menu a:hover {
+  transition: all 0.25s;
+  color: black;
+}
+
 img {
   width: 100%;
   object-fit: contain;

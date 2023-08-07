@@ -25,6 +25,9 @@ const StylesContainer = styled.div`
     a {
       color: white;
     }
+    a:hover {
+      text-decoration: underline;
+    }
     &:first-child {
       border-bottom: 1px solid hsl(257, 7%, 63%);
     }
@@ -42,7 +45,7 @@ const StylesContainer = styled.div`
 
 /************** Component ********************/
 
-const MenuBurger = ({ isToggleMenu }) => {
+const MenuBurger = ({ isToggleMenu, setIsToggleMenu }) => {
   //TRASNSITION EFFECT
   const stylesRef = useRef();
   useEffect(() => {
@@ -56,6 +59,18 @@ const MenuBurger = ({ isToggleMenu }) => {
     isToggleMenu
       ? (element.style.top = "5rem")
       : (element.style.top = "-30rem");
+  }, [isToggleMenu]);
+
+  const handleResize = () => {
+    if (isToggleMenu) {
+      setIsToggleMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, [isToggleMenu]);
 
   //JSX

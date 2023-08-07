@@ -11,14 +11,13 @@ const redColor = "hsl(0, 87%, 67%)";
 const StylesContainer = styled.section`
   width: 100%;
   padding: 0 5rem;
-  margin: 2rem 0;
 `;
 
 const Div = styled.div`
   padding: 3rem;
   border-radius: 5px;
   position: relative;
-  top: 6rem;
+  top: 10rem;
   left: 50%;
   transform: translate(-50%);
   background-image: url("/assets/images/bg-shorten-desktop.svg");
@@ -27,7 +26,7 @@ const Div = styled.div`
   background-color: hsl(257, 27%, 26%);
   @media only screen and (max-width: 800px) {
     background-image: url("/assets/images/bg-shorten-mobile.svg");
-    top: 8rem;
+    top: 10rem;
   }
 
   form {
@@ -55,6 +54,11 @@ const Div = styled.div`
       color: white;
       border: none;
     }
+
+    button:hover {
+      transition: all 0.25;
+      background-color: hsl(180, 66%, 80%);
+    }
   }
 `;
 
@@ -63,17 +67,6 @@ const ErrorMessage = styled.p`
   position: relative;
   top: 1rem;
   text-align: center;
-`;
-
-const Input = styled.input`
-  border: 1px solid hsl(0, 0%, 75%);
-`;
-
-const InputError = styled.input`
-  border: 2px solid ${redColor};
-  &::placeholder {
-    color: ${redColor};
-  }
 `;
 
 /************** COMPONENT ********************/
@@ -90,7 +83,12 @@ const InputSection = () => {
     e.preventDefault();
     const data = await fetchData(url);
     //handle negative response
-    if (!data.ok) {
+    if (localData.length === 10) {
+      setErrorMessage(
+        "Sorry but we only allow 10 items. Delete some items to add new."
+      );
+      return;
+    } else if (!data.ok) {
       setErrorMessage(data.error);
       inputRef.current.style.border = `2px solid ${redColor}`;
       return;
@@ -133,6 +131,7 @@ const InputSection = () => {
         </form>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </Div>
+
       <UrlContainer localData={localData} setLocalData={setLocalData} />
     </StylesContainer>
   );

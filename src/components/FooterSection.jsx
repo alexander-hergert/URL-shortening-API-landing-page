@@ -19,7 +19,10 @@ const StylesContainer = styled.footer`
 
   & > img {
     width: 8rem;
-    filter: invert(100%);
+    filter: brightness(0) saturate(100%) invert(86%) sepia(58%) saturate(0%)
+      hue-rotate(319deg) brightness(105%) contrast(101%);
+    position: relative;
+    top: 1rem;
   }
 
   & > div {
@@ -34,6 +37,11 @@ const StylesContainer = styled.footer`
       gap: 0;
     }
   }
+
+  a:hover {
+    transition: all 0.25s;
+    color: hsl(180, 66%, 49%);
+  }
 `;
 
 const Ul = styled.ul`
@@ -41,6 +49,11 @@ const Ul = styled.ul`
   gap: 2rem;
   img {
     min-width: 1rem;
+  }
+
+  img:hover {
+    filter: brightness(0) saturate(100%) invert(98%) sepia(70%) saturate(6758%)
+      hue-rotate(121deg) brightness(89%) contrast(81%);
   }
 `;
 

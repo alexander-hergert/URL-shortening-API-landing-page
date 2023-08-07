@@ -81,7 +81,7 @@ const NavSection = () => {
         <RxHamburgerMenu onClick={handleToggle} />
       </BurgerButton>
       {/* opened state */}
-      <MenuBurger isToggleMenu={isToggleMenu} />
+      <MenuBurger isToggleMenu={isToggleMenu} setIsToggleMenu={setIsToggleMenu}/>
     </StylesContainer>
   );
 };
